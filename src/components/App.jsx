@@ -7,7 +7,7 @@ import { fetchPhotos } from '../components/services/fetchPhotos';
 import { Loader } from './Loader/Loader';
 import { Notify } from 'notiflix';
 
-export class App extends Component {
+export const App = () => {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,7 +58,7 @@ export class App extends Component {
     this.setState({ isModalOpen: false });
   };
 
-  async search(query, page) {
+ const async search(query, page) {
     const response = await fetchPhotos(query, page);
     this.setState(prevState => {
       return {
