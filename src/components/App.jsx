@@ -79,7 +79,6 @@ export const App = () => {
     }
   }
 
-  render() {
     return (
       <>
         <Searchbar onSubmit={this.onSubmit} />
@@ -97,5 +96,4 @@ export const App = () => {
         )}
       </>
     );
-  }
 }
