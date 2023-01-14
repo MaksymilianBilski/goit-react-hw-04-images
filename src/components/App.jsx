@@ -6,8 +6,13 @@ import { fetchPhotos } from '../components/services/fetchPhotos';
 import { Loader } from './Loader/Loader';
 import { Notify } from 'notiflix';
 import { useState } from 'react';
+import { createContext, useContext } from 'react';
+
+export const MyContext = createContext();
+export const useMyContext = () => useContext(MyContext);
 
 export const App = () => {
+  console.log(MyContext);
   const [query, setQuery] = useState('');
   const [isModalOpen, setModal] = useState();
   const [modalFormatSrc, setModalFormatSrc] = useState('');
@@ -63,14 +68,14 @@ export const App = () => {
   };
 
   return (
-    <>
-      <Searchbar onSubmit={onSubmit} />
+    <MyContext.Provider value={onSubmit}>
+      <Searchbar />
       <ImageGallery items={images} handleClick={onImageClick} />
       {isLoading && <Loader />}
       {showBtn && <Button handleClick={onPageChange} />}
       {isModalOpen && (
         <Modal largeImageURL={modalFormatSrc} onClose={onModalClose} />
       )}
-    </>
+    </MyContext.Provider>
   );
 };
