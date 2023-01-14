@@ -31,7 +31,6 @@ export const App = () => {
     setImages([]);
     search(inputValue, page);
   };
-
   const onPageChange = () => {
     setPage(page + 1);
     setIsLoading(true);
