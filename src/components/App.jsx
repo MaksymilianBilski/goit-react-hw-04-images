@@ -68,14 +68,21 @@ export const App = () => {
   };
 
   return (
-    <MyContext.Provider value={onSubmit}>
+    <MyContext.Provider
+      value={{
+        onSubmit,
+        onImageClick,
+        onPageChange,
+        onModalClose,
+        modalFormatSrc,
+        images,
+      }}
+    >
       <Searchbar />
       <ImageGallery items={images} handleClick={onImageClick} />
       {isLoading && <Loader />}
       {showBtn && <Button handleClick={onPageChange} />}
-      {isModalOpen && (
-        <Modal largeImageURL={modalFormatSrc} onClose={onModalClose} />
-      )}
+      {isModalOpen && <Modal />}
     </MyContext.Provider>
   );
 };

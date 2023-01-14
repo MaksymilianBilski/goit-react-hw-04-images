@@ -1,24 +1,24 @@
+import { useMyContext } from 'components/App';
+import { createContext, useContext } from 'react';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
-import { Component } from 'react';
 import css from '../ImageGallery/ImageGallery.module.css';
 import PropTypes from 'prop-types';
 
-export class ImageGallery extends Component {
-  render() {
-    const { items, handleClick } = this.props;
-    return (
-      <ul className={css.gallery}>
-        {items.map(el => (
-          <ImageGalleryItem
-            handleClick={handleClick}
-            src={el.webformatURL}
-            alt={el.tags}
-          />
-        ))}
-      </ul>
-    );
-  }
-}
+export const galleryContext = createContext();
+export const useGalleryContext = () => useContext(galleryContext);
+
+export const ImageGallery = () => {
+  const { images, onImageClick } = useMyContext();
+  return (
+    <ul className={css.gallery}>
+      {images.map(el => (
+        <galleryContext.Provider value={{ onImageClick, el }}>
+          <ImageGalleryItem src={el.webformatURL} alt={el.tags} />
+        </galleryContext.Provider>
+      ))}
+    </ul>
+  );
+};
 
 ImageGallery.propTypes = {
   items: PropTypes.arrayOf(
