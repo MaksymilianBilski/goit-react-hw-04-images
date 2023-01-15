@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+import { ImagesFinderContext } from './context/ImagesFinderContext/ImagesFinderContext';
 import { Button } from './Button/Button';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Searchbar } from './Searchbar/Searchbar';
@@ -6,13 +8,8 @@ import { fetchPhotos } from '../components/services/fetchPhotos';
 import { Loader } from './Loader/Loader';
 import { Notify } from 'notiflix';
 import { useState } from 'react';
-import { createContext, useContext } from 'react';
-
-export const MyContext = createContext();
-export const useMyContext = () => useContext(MyContext);
 
 export const App = () => {
-  console.log(MyContext);
   const [query, setQuery] = useState('');
   const [isModalOpen, setModal] = useState();
   const [modalFormatSrc, setModalFormatSrc] = useState('');
@@ -67,7 +64,7 @@ export const App = () => {
   };
 
   return (
-    <MyContext.Provider
+    <ImagesFinderContext.Provider
       value={{
         onSubmit,
         onImageClick,
@@ -82,6 +79,14 @@ export const App = () => {
       {isLoading && <Loader />}
       {showBtn && <Button handleClick={onPageChange} />}
       {isModalOpen && <Modal />}
-    </MyContext.Provider>
+    </ImagesFinderContext.Provider>
   );
+};
+ImagesFinderContext.Provider.propTypes = {
+  onSubmit: PropTypes.func,
+  onImageClick: PropTypes.func,
+  onPageChange: PropTypes.func,
+  onModalClose: PropTypes.func,
+  modalFormatSrc: PropTypes.string,
+  images: PropTypes.arrayOf(PropTypes.object),
 };

@@ -1,9 +1,8 @@
-import PropTypes from 'prop-types';
-import { useMyContext } from 'components/App';
+import { useImagesFinderContext } from 'components/context/ImagesFinderContext/ImagesFinderContext';
 import css from '../Searchbar/Searchbar.module.css';
 
 export const Searchbar = () => {
-  const { onSubmit } = useMyContext();
+  const { onSubmit } = useImagesFinderContext();
   return (
     <header className={css.searchbar}>
       <form className={css.form} onSubmit={onSubmit}>
@@ -21,8 +20,4 @@ export const Searchbar = () => {
       </form>
     </header>
   );
-};
-
-Searchbar.propTypes = {
-  onSubmit: PropTypes.func,
 };

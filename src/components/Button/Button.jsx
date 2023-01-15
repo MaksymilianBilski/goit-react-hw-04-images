@@ -1,9 +1,8 @@
-import { useMyContext } from 'components/App';
+import { useImagesFinderContext } from '../context/ImagesFinderContext/ImagesFinderContext';
 import css from '../Button/Button.module.css';
-import PropTypes from 'prop-types';
 
 export const Button = () => {
-  const { onPageChange } = useMyContext();
+  const { onPageChange } = useImagesFinderContext();
   return (
     <div className={css.btnWrapper}>
       <button type="button" className={css.btn} onClick={onPageChange}>
@@ -11,8 +10,4 @@ export const Button = () => {
       </button>
     </div>
   );
-};
-
-Button.propTypes = {
-  handleClick: PropTypes.func,
 };

@@ -1,6 +1,5 @@
-import { useMyContext } from 'components/App';
+import { useImagesFinderContext } from 'components/context/ImagesFinderContext/ImagesFinderContext';
 import css from '../Modal/Modal.module.css';
-import PropTypes from 'prop-types';
 
 export const Modal = () => {
   const handleKeyDown = () => {
@@ -11,7 +10,7 @@ export const Modal = () => {
     });
   };
 
-  const { modalFormatSrc, onModalClose } = useMyContext();
+  const { modalFormatSrc, onModalClose } = useImagesFinderContext();
   return (
     <div>
       <div onClick={onModalClose} className={css.overlay}></div>
@@ -22,10 +21,4 @@ export const Modal = () => {
       </div>
     </div>
   );
-};
-
-Modal.propTypes = {
-  onClose: PropTypes.func,
-  onClick: PropTypes.func,
-  largeImageURL: PropTypes.string,
 };

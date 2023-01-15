@@ -1,28 +1,23 @@
-import { useMyContext } from 'components/App';
-import { createContext, useContext } from 'react';
+import { useImagesFinderContext } from '../context/ImagesFinderContext/ImagesFinderContext';
+import { GalleryContext } from 'components/context/ImageGalleryContext/ImageGalleryContext';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from '../ImageGallery/ImageGallery.module.css';
 import PropTypes from 'prop-types';
 
-export const galleryContext = createContext();
-export const useGalleryContext = () => useContext(galleryContext);
-
 export const ImageGallery = () => {
-  const { images, onImageClick } = useMyContext();
+  const { images, onImageClick } = useImagesFinderContext();
   return (
     <ul className={css.gallery}>
       {images.map(el => (
-        <galleryContext.Provider value={{ onImageClick, el }}>
+        <GalleryContext.Provider value={{ onImageClick, el }}>
           <ImageGalleryItem src={el.webformatURL} alt={el.tags} />
-        </galleryContext.Provider>
+        </GalleryContext.Provider>
       ))}
     </ul>
   );
 };
 
-ImageGallery.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({ webformatURL: PropTypes.string, tags: PropTypes.string })
-  ),
-  handleClick: PropTypes.func,
+GalleryContext.Provider.propTypes = {
+  onImageClick: PropTypes.array,
+  el: PropTypes.object,
 };
