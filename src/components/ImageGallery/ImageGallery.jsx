@@ -1,5 +1,5 @@
 import { useImagesFinderContext } from '../context/ImagesFinderContext/ImagesFinderContext';
-import { GalleryContext } from 'components/context/ImageGalleryContext/ImageGalleryContext';
+import { GalleryProvider } from 'components/context/ImageGalleryContext/ImageGalleryContext';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from '../ImageGallery/ImageGallery.module.css';
 import PropTypes from 'prop-types';
@@ -9,15 +9,19 @@ export const ImageGallery = () => {
   return (
     <ul className={css.gallery}>
       {images.map(el => (
-        <GalleryContext.Provider value={{ onImageClick, el }}>
-          <ImageGalleryItem src={el.webformatURL} alt={el.tags} />
-        </GalleryContext.Provider>
+        <GalleryProvider value={{ onImageClick, el }}>
+          <ImageGalleryItem
+            handleClick={onImageClick}
+            src={el.webformatURL}
+            alt={el.tags}
+          />
+        </GalleryProvider>
       ))}
     </ul>
   );
 };
 
-GalleryContext.Provider.propTypes = {
+GalleryProvider.propTypes = {
   onImageClick: PropTypes.array,
   el: PropTypes.object,
 };
