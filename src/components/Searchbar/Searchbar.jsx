@@ -1,4 +1,4 @@
-import { useImagesFinderContext } from 'components/context/ImagesFinderContext/ImagesFinderContext';
+import { useImagesFinderContext } from 'components/context/ImagesFinderContext';
 import css from '../Searchbar/Searchbar.module.css';
 
 export const Searchbar = () => {

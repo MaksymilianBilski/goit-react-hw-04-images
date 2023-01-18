@@ -1,13 +1,11 @@
-import { useGalleryContext } from 'components/context/ImageGalleryContext/ImageGalleryContext';
-import { useImagesFinderContext } from 'components/context/ImagesFinderContext/ImagesFinderContext';
+import { useImagesFinderContext } from 'components/context/ImagesFinderContext';
 import css from '../ImageGalleryItem/ImageGalleryItem.module.css';
 
-export const ImageGalleryItem = () => {
+export const ImageGalleryItem = ({ src, alt }) => {
   const { onImageClick } = useImagesFinderContext();
-  const { el } = useGalleryContext();
   return (
     <li className={css.galleryItem} onClick={onImageClick}>
-      <img className={css.galleryImg} src={el.webformatURL} alt={el.tags} />
+      <img className={css.galleryImg} src={src} alt={alt} />
     </li>
   );
 };
