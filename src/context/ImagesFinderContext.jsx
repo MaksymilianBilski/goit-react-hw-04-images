@@ -12,7 +12,7 @@ const ImagesFinderProvider = ({ children }) => {
   const [modalFormatSrc, setModalFormatSrc] = useState('');
   const [isLoading, setIsLoading] = useState();
   const [images, setImages] = useState([]);
-  const [page = 1, setPage] = useState();
+  const [page, setPage] = useState(1);
   const [showBtn, setShowBtn] = useState();
 
   const onSubmit = evt => {
@@ -25,6 +25,7 @@ const ImagesFinderProvider = ({ children }) => {
     setImages([]);
     search(inputValue, page);
   };
+
   const onPageChange = () => {
     setPage(page + 1);
     setIsLoading(true);
@@ -43,6 +44,7 @@ const ImagesFinderProvider = ({ children }) => {
 
   const search = async (query, page) => {
     const response = await fetchPhotos(query, page);
+    console.log(response);
     setImages(prevState => {
       return [...prevState, ...response.data.hits];
     });
@@ -85,7 +87,13 @@ ImagesFinderContext.Provider.propTypes = {
   onPageChange: PropTypes.func,
   onModalClose: PropTypes.func,
   modalFormatSrc: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  images: PropTypes.arrayOf(
+    PropTypes.objectOf({
+      tags: PropTypes.string,
+      webformatURL: PropTypes.string,
+      largeImageURL: PropTypes.string,
+    })
+  ),
 };
 
 export default ImagesFinderProvider;

@@ -1,4 +1,4 @@
-import { useImagesFinderContext } from '../context/ImagesFinderContext';
+import { useImagesFinderContext } from '../../context/ImagesFinderContext';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from '../ImageGallery/ImageGallery.module.css';
 

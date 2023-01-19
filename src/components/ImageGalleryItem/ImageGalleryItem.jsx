@@ -1,4 +1,4 @@
-import { useImagesFinderContext } from 'components/context/ImagesFinderContext';
+import { useImagesFinderContext } from 'context/ImagesFinderContext';
 import css from '../ImageGalleryItem/ImageGalleryItem.module.css';
 
 export const ImageGalleryItem = ({ src, alt }) => {

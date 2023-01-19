@@ -1,4 +1,4 @@
-import { useImagesFinderContext } from '../context/ImagesFinderContext';
+import { useImagesFinderContext } from '../../context/ImagesFinderContext';
 import css from '../Button/Button.module.css';
 
 export const Button = () => {
